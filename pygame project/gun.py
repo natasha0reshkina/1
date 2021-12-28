@@ -7,7 +7,7 @@ class Gun(Sprite):
         """инициализация пушки"""
         super(Gun, self).__init__()
         self.screen = screen
-        self.image = pygame.image.load('images/pixil-frame-0 (1).png')
+        self.image = pygame.image.load('imagespixil-frame-0 (1).png')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect.centerx = self.screen_rect.centerx
