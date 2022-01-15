@@ -140,7 +140,7 @@ if __name__ == '__main__':
     stats = Stats()
     sc = Scores(screen, stats)
     start_window = True
-    menu = level_game = finish_window = results = False
+    menu = level_game = finish_window = results = rules = False
     # shop =False
     k = 0
     while True:
@@ -159,17 +159,58 @@ if __name__ == '__main__':
 
         elif menu:
             screen.fill(bg_color)
-            pygame.draw.rect(screen, (0, 0, 255), (300, 350, 100, 100))
+            pygame.draw.rect(screen, ('white'), (100, 150, 500, 450))
+            font = pygame.font.Font(None, 50)
+            text = font.render("WELCOME", True, 'PURPLE')
+            text_x = text.get_width() + 70
+            text_y = text.get_height() + 300
+            screen.blit(text, (text_x, text_y))
+            level = 1
+            text = font.render("LEVEL " + str(level), True, 'BLUE')
+            text_x = text.get_width() + 128
+            text_y = text.get_height() + 370
+            screen.blit(text, (text_x, text_y))
+            text = font.render("RULES", True, 'RED')
+            text_x = text.get_width()
+            text_y = text.get_height() + 140
+            screen.blit(text, (text_x, text_y))
+            text_w = text.get_width()
+            text_h = text.get_height()
+            pygame.draw.rect(screen, 'RED', (text_x - 10, text_y - 10,
+                                             text_w + 20, text_h + 20), 1)
+            text = font.render("PLAY", True, 'GREEN')
+            text_x = text.get_width() + 200
+            text_y = text.get_height() + 440
+            screen.blit(text, (text_x, text_y))
+            text_w = text.get_width()
+            text_h = text.get_height()
+            pygame.draw.rect(screen, (0, 255, 0), (text_x - 10, text_y - 10,
+                                                   text_w + 20, text_h + 20), 1)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = pygame.mouse.get_pos()
-                    if 300 <= x <= 400 and 350 <= y <= 450:
+                    print(x)
+                    print(y)
+                    if 278 <= x <= 385 and 464 <= y <= 518:
                         menu = False
                         level_game = True
                         k = 1
+                    if 107 <= x <= 244 and 163 <= y <= 217:
+                        menu = False
+                        rules = True
+                        k = 1
+        elif rules:
+            screen.fill(bg_color)
+            pygame.draw.rect(screen, ('white'), (100, 150, 500, 450))
+            font = pygame.font.Font(None, 50)
+            text = font.render("Тут должны быть правила", True, 'black')
+            text_x = text.get_width() - 330
+            text_y = text.get_height() + 300
+            screen.blit(text, (text_x, text_y))
+
 
 
 
