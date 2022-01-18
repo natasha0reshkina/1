@@ -10,7 +10,7 @@ from scores import Scores
 from ino import Ino
 from bullet import Bullet
 
-
+clock = pygame.time.Clock()
 def events(screen, gun, bullets):
     """обработка нажатий клавиш"""
 
@@ -158,17 +158,7 @@ if __name__ == '__main__':
                         menu = True
 
         elif menu:
-            illustration = [pygame.image.load('кадр 1.png'), pygame.image.load('кадр 2.png'),
-                         pygame.image.load('кадр 3.png'), pygame.image.load('кадр 4.png'),
-                         pygame.image.load('кадр 5.png'), pygame.image.load('кадр 6.png'),
-                            pygame.image.load('кадр 7.png'), pygame.image.load('кадр 8.png'),
-                            pygame.image.load('кадр 9.png'), pygame.image.load('кадр 10.png'),
-                            pygame.image.load('кадр 11.png'), pygame.image.load('кадр 12.png')
-                            ]
 
-
-            bg = pygame.image.load('bg.jpg')
-            playerStand = pygame.image.load('idle.png')
             screen.fill(bg_color)
             pygame.draw.rect(screen, ('black'), (100, 150, 500, 450))
             font = pygame.font.Font(None, 50)
@@ -187,6 +177,7 @@ if __name__ == '__main__':
             screen.blit(text, (text_x, text_y))
             text_w = text.get_width()
             text_h = text.get_height()
+
             pygame.draw.rect(screen, 'RED', (text_x - 10, text_y - 10,
                                              text_w + 20, text_h + 20), 1)
             text = font.render("PLAY", True, 'GREEN')
@@ -206,7 +197,7 @@ if __name__ == '__main__':
 
                     if 278 <= x <= 385 and 464 <= y <= 518:
                         menu = False
-                        level_game = True
+                        move = True
                         k = 1
                     if 107 <= x <= 244 and 163 <= y <= 217:
                         menu = False
@@ -282,5 +273,38 @@ if __name__ == '__main__':
                     if 300 <= x <= 400 and 350 <= y <= 450:
                         menu = True
                         results = False
+        elif move:
+            screen.fill('black')
+            illustration = [pygame.image.load('кадр 1.png'), pygame.image.load('кадр 2.png'),
+                            pygame.image.load('кадр 3.png'), pygame.image.load('кадр 4.png'),
+                            pygame.image.load('кадр 5.png'), pygame.image.load('кадр 6.png'),
+                            pygame.image.load('кадр 7.png'), pygame.image.load('кадр 8.png'),
+                            pygame.image.load('кадр 9.png'), pygame.image.load('кадр 10.png'),
+                            pygame.image.load('кадр 11.png'), pygame.image.load('кадр 12.png')
+
+                            ]
+            ill_move = 0
+            width = 254
+            height = 254
+            count = 0
+            all = 0
+            deadline = time.monotonic() + 1
+
+            while all != 10:
+
+                #screen.fill("black")
+
+                screen.blit(illustration[count], (0, count*100))
+                deadline = time.monotonic() + 1
+
+
+                if count == 11:
+                    all += 1
+                    count = 0
+                else:
+                    count += 1
+
+            ill = False
+
 
         pygame.display.flip()
